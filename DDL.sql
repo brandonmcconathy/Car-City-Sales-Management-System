@@ -4,8 +4,16 @@
 SET FOREIGN_KEY_CHECKS = 0;
 SET AUTOCOMMIT = 0;
 
+-- Drops tables if they exist in the DB
+DROP TABLE IF EXISTS Customers;
+DROP TABLE IF EXISTS Employees;
+DROP TABLE IF EXISTS CarModel;
+DROP TABLE IF EXISTS Cars;
+DROP TABLE IF EXISTS Repairs;
+DROP TABLE IF EXISTS Transactions;
+
 -- Creates all tables
-CREATE OR REPLACE TABLE Customers (
+CREATE TABLE Customers (
     customerID INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
     addressLine1 VARCHAR(150) NOT NULL,
@@ -19,7 +27,7 @@ CREATE OR REPLACE TABLE Customers (
     PRIMARY KEY (customerID)
 );
 
-CREATE OR REPLACE TABLE Employees (
+CREATE TABLE Employees (
     employeeID INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
     jobTitle VARCHAR(50) NOT NULL,
@@ -29,7 +37,7 @@ CREATE OR REPLACE TABLE Employees (
     PRIMARY KEY (employeeID)
 );
 
-CREATE OR REPLACE TABLE CarModel (
+CREATE TABLE CarModel (
     carModelID INT NOT NULL AUTO_INCREMENT,
     make VARCHAR(50) NOT NULL,
     model VARCHAR(50) NOT NULL,
@@ -37,7 +45,7 @@ CREATE OR REPLACE TABLE CarModel (
     PRIMARY KEY (carModelID)
 );
 
-CREATE OR REPLACE TABLE Cars (
+CREATE TABLE Cars (
     carID INT NOT NULL AUTO_INCREMENT,
     carModelID INT NOT NULL,
     isPreOwned BOOLEAN NOT NULL,
@@ -48,7 +56,7 @@ CREATE OR REPLACE TABLE Cars (
     ON DELETE CASCADE
 );
 
-CREATE OR REPLACE TABLE Repairs (
+CREATE TABLE Repairs (
     repairID INT NOT NULL AUTO_INCREMENT,
     employeeID INT NOT NULL,
     carID INT NOT NULL,
@@ -63,7 +71,7 @@ CREATE OR REPLACE TABLE Repairs (
     ON DELETE CASCADE
 );
 
-CREATE OR REPLACE TABLE Transactions (
+CREATE TABLE Transactions (
     transactionID INT NOT NULL AUTO_INCREMENT,
     customerID INT NOT NULL,
     employeeID INT NOT NULL,
@@ -79,6 +87,9 @@ CREATE OR REPLACE TABLE Transactions (
     FOREIGN KEY (carID) REFERENCES Cars(carID)
     ON DELETE CASCADE
 );
+
+-- TODO
+-- INSERT queries
 
 SET FOREIGN_KEY_CHECKS = 1;
 COMMIT;
