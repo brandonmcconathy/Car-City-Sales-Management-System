@@ -15,7 +15,8 @@ DROP TABLE IF EXISTS Transactions;
 -- Creates all tables
 CREATE TABLE Customers (
     customerID INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(100) NOT NULL,
+    fName VARCHAR(100) NOT NULL,
+    lName VARCHAR(100) NOT NULL,
     addressLine1 VARCHAR(150) NOT NULL,
     addressLine2 VARCHAR(150),
     city VARCHAR(100) NOT NULL,
@@ -29,7 +30,8 @@ CREATE TABLE Customers (
 
 CREATE TABLE Employees (
     employeeID INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(100) NOT NULL,
+    fName VARCHAR(100) NOT NULL,
+    lName VARCHAR(100) NOT NULL,
     jobTitle VARCHAR(50) NOT NULL,
     isDealer BOOLEAN NOT NULL,
     email VARCHAR(254) NOT NULL,
@@ -90,6 +92,13 @@ CREATE TABLE Transactions (
 
 -- TODO
 -- INSERT queries
+INSERT INTO Customers (fName, lName, addressLine1, city, state, country, postalCode, phoneNumber, email)
+VALUES ("John", "Doe", "123 State St", "Los Angeles", "California", "United States", "90001", "6265551234", "johndoe@example.com"),
+("Alex", "Johnson", "321 Apple St", "Los Angeles", "California", "United States", "90001", "6265554321", "alex.j@example.com"),
+("Ryan", "Roberts", "456 Orange Rd", "Las Vegas", "Nevada", "United States", "80002", "8275551234", "r.roberts@example.com"),
+("Monica", "Myers", "654 Mountain St", "Portland", "Oregon", "United States", "70001", "6215559876", "monicamy@example.com"),
+("Linda", "Smith", "987 Main St", "Portland", "Oregon", "United States", "70001", "6215559229", "lindasmith@example.com"),
+("Jane", "Doe", "123 State St", "Los Angeles", "California", "United States". "90001", "6265559090", "janedoe@example.com");
 
 SET FOREIGN_KEY_CHECKS = 1;
 COMMIT;
