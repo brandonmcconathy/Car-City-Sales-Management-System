@@ -98,7 +98,24 @@ VALUES ("John", "Doe", "123 State St", "Los Angeles", "California", "United Stat
 ("Ryan", "Roberts", "456 Orange Rd", "Las Vegas", "Nevada", "United States", "80002", "8275551234", "r.roberts@example.com"),
 ("Monica", "Myers", "654 Mountain St", "Portland", "Oregon", "United States", "70001", "6215559876", "monicamy@example.com"),
 ("Linda", "Smith", "987 Main St", "Portland", "Oregon", "United States", "70001", "6215559229", "lindasmith@example.com"),
-("Jane", "Doe", "123 State St", "Los Angeles", "California", "United States". "90001", "6265559090", "janedoe@example.com");
+("Jane", "Doe", "123 State St", "Los Angeles", "California", "United States", "90001", "6265559090", "janedoe@example.com");
+
+INSERT INTO CarModel (make, model, year)
+VALUES ("Honda", "Accord", 2025),
+("Honda", "Accord", 2024),
+("Ford", "Explorer", 2025),
+("Toyota", "Camry", 2024),
+("Honda", "Civic", 2025),
+("Tesla", "Model 3", 2025),
+("Tesla", "Model Y", 2024);
+
+INSERT INTO Cars (carModelID, isPreOwned, recievedDate, isForSale)
+VALUES ((SELECT carModelID FROM CarModel WHERE make = "Honda" AND model = "Accord" AND year = 2025), 0, "2025-03-10", 1),
+((SELECT carModelID FROM CarModel WHERE make = "Honda" AND model = "Accord" AND year = 2024), 1, "2025-05-02", 1),
+((SELECT carModelID FROM CarModel WHERE make = "Honda" AND model = "Accord" AND year = 2025), 0, "2025-03-10", 0),
+((SELECT carModelID FROM CarModel WHERE make = "Tesla" AND model = "Model 3" AND year = 2025), 0, "2025-06-03", 1),
+((SELECT carModelID FROM CarModel WHERE make = "Tesla" AND model = "Model Y" AND year = 2024), 1, "2024-12-20", 0),
+((SELECT carModelID FROM CarModel WHERE make = "Tesla" AND model = "Model Y" AND year = 2024), 1, "2024-12-20", 1);
 
 SET FOREIGN_KEY_CHECKS = 1;
 COMMIT;
