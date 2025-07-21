@@ -90,7 +90,7 @@ CREATE TABLE Transactions (
     ON DELETE CASCADE
 );
 
--- Insert data into all of the tables
+-- Inserts data into all of the tables
 INSERT INTO Customers (fName, lName, addressLine1, city, state, country, postalCode, phoneNumber, email)
 VALUES ("John", "Doe", "123 State St", "Los Angeles", "California", "United States", "90001", "6265551234", "johndoe@example.com"),
 ("Alex", "Johnson", "321 Apple St", "Los Angeles", "California", "United States", "90001", "6265554321", "alex.j@example.com"),
