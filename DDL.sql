@@ -90,8 +90,7 @@ CREATE TABLE Transactions (
     ON DELETE CASCADE
 );
 
--- TODO
--- INSERT queries
+-- Insert data into all of the tables
 INSERT INTO Customers (fName, lName, addressLine1, city, state, country, postalCode, phoneNumber, email)
 VALUES ("John", "Doe", "123 State St", "Los Angeles", "California", "United States", "90001", "6265551234", "johndoe@example.com"),
 ("Alex", "Johnson", "321 Apple St", "Los Angeles", "California", "United States", "90001", "6265554321", "alex.j@example.com"),
@@ -116,6 +115,9 @@ VALUES ((SELECT carModelID FROM CarModel WHERE make = "Honda" AND model = "Accor
 ((SELECT carModelID FROM CarModel WHERE make = "Tesla" AND model = "Model 3" AND year = 2025), 0, "2025-06-03", 1),
 ((SELECT carModelID FROM CarModel WHERE make = "Tesla" AND model = "Model Y" AND year = 2024), 1, "2024-12-20", 0),
 ((SELECT carModelID FROM CarModel WHERE make = "Tesla" AND model = "Model Y" AND year = 2024), 1, "2024-12-20", 1);
+
+-- TODO
+-- INSERT queries for the remaining tables
 
 SET FOREIGN_KEY_CHECKS = 1;
 COMMIT;
