@@ -99,6 +99,14 @@ VALUES ("John", "Doe", "123 State St", "Los Angeles", "California", "United Stat
 ("Linda", "Smith", "987 Main St", "Portland", "Oregon", "United States", "70001", "6215559229", "lindasmith@example.com"),
 ("Jane", "Doe", "123 State St", "Los Angeles", "California", "United States", "90001", "6265559090", "janedoe@example.com");
 
+INSERT INTO Employees (fName, lName, jobTitle, isDealer, email, phoneNumber)
+VALUES ('Sarah', 'Nguyen', 'Sales Manager', FALSE, 'sarah.nguyen@example.com', '555-123-4567'),
+('James', 'Taylor', 'Technician', FALSE, 'james.taylor@example.com', '555-234-5678'),
+('Ava', 'Martinez', 'Dealer Representative', TRUE, 'ava.martinez@example.com', '555-345-6789'),
+('Liam', 'Chen', 'Customer Support', FALSE, 'liam.chen@example.com', '555-456-7890'),
+('Olivia', 'Harris', 'Dealer Manager', TRUE, 'olivia.harris@example.com', '555-567-8901'),
+('Noah', 'Kumar', 'Warehouse Associate', FALSE, 'noah.kumar@example.com', '555-678-9012');
+
 INSERT INTO CarModel (make, model, year)
 VALUES ("Honda", "Accord", 2025),
 ("Honda", "Accord", 2024),
@@ -116,8 +124,21 @@ VALUES ((SELECT carModelID FROM CarModel WHERE make = "Honda" AND model = "Accor
 ((SELECT carModelID FROM CarModel WHERE make = "Tesla" AND model = "Model Y" AND year = 2024), 1, "2024-12-20", 0),
 ((SELECT carModelID FROM CarModel WHERE make = "Tesla" AND model = "Model Y" AND year = 2024), 1, "2024-12-20", 1);
 
--- TODO
--- INSERT queries for the remaining tables
+INSERT INTO Repairs (employeeID, carID, serviceDate, serviceType, notes, cost)
+VALUES (1, 101, '2025-06-15', 'Oil Change', 'Customer requested synthetic oil.', 89.99),
+(2, 102, '2025-06-20', 'Brake Replacement', 'Front and rear brakes replaced.', 450.00),
+(3, 103, '2025-07-01', 'Tire Rotation', NULL, 49.99),
+(4, 104, '2025-07-10', 'Battery Replacement', 'Battery tested and replaced under warranty.', 129.50),
+(5, 105, '2025-07-15', 'AC Repair', 'Fixed AC compressor issue.', 299.99),
+(6, 106, '2025-07-20', 'Transmission Service', 'Full transmission flush and filter change.', 799.00);
+
+INSERT INTO Transactions (customerID, employeeID, carID, transactionDate, transactionAmount, paid) 
+VALUES  (1, 2, 101, '2025-06-01', 23999.99, TRUE),
+(2, 3, 102, '2025-06-10', 18950.00, TRUE),
+(3, 1, 103, '2025-06-15', 26500.00, FALSE),
+(4, 4, 104, '2025-07-01', 31999.00, TRUE),
+(5, 5, 105, '2025-07-08', 27999.99, FALSE),
+(6, 6, 106, '2025-07-20', 33000.00, TRUE);
 
 SET FOREIGN_KEY_CHECKS = 1;
 COMMIT;
