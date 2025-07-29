@@ -1,0 +1,69 @@
+body {
+    background-color: blanchedalmond;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+  
+  th, td {
+    border: 2px solid black;
+    padding: 10px;
+    text-align: left;
+  }  
+
+/* Navbar */
+.navbar{
+      position: fixed;       /* Fix to the top of the viewport */
+  top: 0;
+  left: 0;
+  width: 100vw;         /* Full viewport width */
+  height: 70px;         /* Taller navbar */
+  background-color: tan;
+  display: flex;
+  justify-content: center;  /* Center the links */
+  align-items: center;
+  margin: 0;            /* Remove default margin */
+  padding: 0;           /* Remove default padding */
+  box-sizing: border-box; /* Make sure padding/borders don't affect size */
+  z-index: 1000;        /* Make sure navbar stays on top */
+  border: none;         /* No border */
+  box-shadow: none;
+}
+
+.navbar-links {
+    list-style: none;
+    display: inline-flex;
+    gap: 40px;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+}
+
+.navbar-links li a {
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+    font-size:18px;
+}
+  
+.navbar-links li a:hover {
+    text-decoration: underline;
+}
+
+/* Customers page */
+.customers-page {
+    padding-top: 50px;
+}
+
+/* Employees page */
+.employees-page {
+    padding-top: 50px;
+}
+
+/* Car Models Page */
+.car-models-page {
+    padding-top: 50px;
+}
