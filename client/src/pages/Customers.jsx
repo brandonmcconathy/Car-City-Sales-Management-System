@@ -129,7 +129,7 @@ const Customers = () => {
 
       <h2>Customers</h2>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <table border="1" cellPadding="10" cellSpacing="0">
+        <table>
           <thead>
             <tr>
               <th>First Name</th>

@@ -2,6 +2,18 @@ body {
     background-color: blanchedalmond;
 }
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+  
+  th, td {
+    border: 2px solid black;
+    padding: 10px;
+    text-align: left;
+  }  
+
 /* Navbar */
 .navbar{
       position: fixed;       /* Fix to the top of the viewport */
@@ -43,5 +55,15 @@ body {
 
 /* Customers page */
 .customers-page {
+    padding-top: 50px;
+}
+
+/* Employees page */
+.employees-page {
+    padding-top: 50px;
+}
+
+/* Car Models Page */
+.car-models-page {
     padding-top: 50px;
 }
