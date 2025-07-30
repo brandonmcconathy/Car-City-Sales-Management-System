@@ -86,16 +86,37 @@ export default function Repairs() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (updateID) {
-            // Editing a car
-            setRepairs(repairs.map((repair) => {
-                return updateID === repair.repairID ? {repairID: updateID, ...newRepair} : repair
-            }));
-            setUpdateID(null);
-        } else {
-            // Add new car
-            const nextID = repairs.length + 1;
-            setRepairs((prevRepairs) => ([...prevRepairs, {repairID: nextID, ...newRepair}]));
+
+        // Validate car ID
+        let validCarID = false;
+        carData.map((car) => {
+            if (car.carID == newRepair.carID) {
+                validCarID = true;
+            }
+        });
+        !validCarID && alert("Invalid car ID");
+
+        // Validate employee ID
+        let validEmployeeID = false;
+        employeeData.map((employee) => {
+            if (employee.employeeID == newRepair.employeeID) {
+                validEmployeeID = true;
+            }
+        });
+        !validEmployeeID && alert("Invalid employee ID");
+
+        if (validCarID && validEmployeeID) {
+            if (updateID) {
+                // Editing a car
+                setRepairs(repairs.map((repair) => {
+                    return updateID === repair.repairID ? {repairID: updateID, ...newRepair} : repair
+                }));
+                setUpdateID(null);
+            } else {
+                // Add new car
+                const nextID = repairs.length + 1;
+                setRepairs((prevRepairs) => ([...prevRepairs, {repairID: nextID, ...newRepair}]));
+            }
         }
 
         // Empty input fields
@@ -131,7 +152,7 @@ export default function Repairs() {
                         <tr key={repair.repairID}>
                             <td>{employeeData.map(employee => 
                                 repair.employeeID == employee.employeeID && 
-                                `${employee.fName} ${employee.lName}` 
+                                `${employee.fName} ${employee.lName} ID: ${employee.employeeID}` 
                             )}</td>
                             <td>{carData.map(car => 
                                 repair.carID == car.carID &&
@@ -164,25 +185,12 @@ export default function Repairs() {
                 margin: "0 auto"
                 }}
             >
-                <select name="employeeID" value={newRepair.employeeID} onChange={handleChange} required>
-                    <option value="" disabled hidden>Select an employee</option>
-                    {employeeData.map(employee => 
-                    <option key={employee.employeeID} value={employee.employeeID}>
-                        {`${employee.fName} ${employee.lName}`}
-                    </option>)}
-                </select>
-                <select name="carID" value={newRepair.carID} onChange={handleChange} required>
-                    <option value="" disabled hidden>Select a car</option>
-                    {carData.map(car => 
-                    <option key={car.carID} value={car.carID}>
-                        {carModelData.map(carModel => 
-                        car.carModelID == carModel.carModelID && `${carModel.year} ${carModel.make} ${carModel.model} ID: ${car.carID}`)}
-                    </option>)}
-                </select>
+                <input type="number" name="employeeID" value={newRepair.employeeID} onChange={handleChange} placeholder="Employee ID" required/>
+                <input type="number" name="carID" value={newRepair.carID} onChange={handleChange} placeholder="Car ID" required/>
                 <input type="number" name="cost" value={newRepair.cost} onChange={handleChange} placeholder="Cost" required/>
                 <input type="date" name="serviceDate" value={newRepair.serviceDate} onChange={handleChange} required/>
                 <input name="serviceType" value={newRepair.serviceType} onChange={handleChange} placeholder="Service Type" required/>
-                <input name="notes" value={newRepair.notes} onChange={handleChange} placeholder="Notes" required/>
+                <input name="notes" value={newRepair.notes} onChange={handleChange} placeholder="Notes"/>
                 <button type='submit'>{updateID ? "Update Repair" : "Add Repair"}</button>
                 {updateID ? <button onClick={cancelUpdate}>Cancel</button> : null}
             </form>

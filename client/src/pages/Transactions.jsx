@@ -113,17 +113,46 @@ export default function Transactions() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        
-        if (updateID) {
-            // Editing a car
-            setTransactions(transactions.map((transaction) => {
-                return updateID === transaction.transactionID ? {transactionID: updateID, ...newTransaction} : transaction
-            }));
-            setUpdateID(null);
-        } else {
-            // Add new car
-            const nextID = transactions.length + 1;
-            setTransactions((prevTransaction) => ([...prevTransaction, {transactionID: nextID, ...newTransaction}]));
+
+        // Validate car ID
+        let validCarID = false;
+        carData.map((car) => {
+            if (car.carID == newTransaction.carID) {
+                validCarID = true;
+            }
+        });
+        !validCarID && alert("Invalid car ID");
+
+        // Validate employee ID
+        let validEmployeeID = false;
+        employeeData.map((employee) => {
+            if (employee.employeeID == newTransaction.employeeID) {
+                validEmployeeID = true;
+            }
+        });
+        !validEmployeeID && alert("Invalid employee ID");
+
+        // Validate customer ID
+        let validCustomerID = false;
+        customerData.map((customer) => {
+            if (customer.customerID == newTransaction.customerID) {
+                validCustomerID = true;
+            }
+        });
+        !validCustomerID && alert("Invalid customer ID");
+
+        if (validCarID && validCustomerID && validEmployeeID) {
+            if (updateID) {
+                // Editing a car
+                setTransactions(transactions.map((transaction) => {
+                    return updateID === transaction.transactionID ? {transactionID: updateID, ...newTransaction} : transaction
+                }));
+                setUpdateID(null);
+            } else {
+                // Add new car
+                const nextID = transactions.length + 1;
+                setTransactions((prevTransaction) => ([...prevTransaction, {transactionID: nextID, ...newTransaction}]));
+            }
         }
 
         // Empty input fields
@@ -159,11 +188,11 @@ export default function Transactions() {
                         <tr key={transaction.transactionID}>
                             <td>{customerData.map(customer => 
                                 customer.customerID == transaction.customerID && 
-                                `${customer.fName} ${customer.lName}` 
+                                `${customer.fName} ${customer.lName} ID: ${customer.customerID}` 
                             )}</td>
                             <td>{employeeData.map(employee => 
                                 employee.employeeID == transaction.employeeID && 
-                                `${employee.fName} ${employee.lName}` 
+                                `${employee.fName} ${employee.lName} ID: ${employee.employeeID}` 
                             )}</td>
                             <td>{carData.map(car => 
                                 car.carID == transaction.carID && 
@@ -195,28 +224,9 @@ export default function Transactions() {
                 margin: "0 auto"
                 }}
             >
-                <select name="customerID" value={newTransaction.customerID} onChange={handleChange} required>
-                    <option value="" disabled hidden>Select a Customer</option>
-                    {customerData.map(customer => 
-                    <option key={customer.customerID} value={customer.customerID}>
-                        {`${customer.fName} ${customer.lName}`}
-                    </option>)}
-                </select>
-                <select name="employeeID" value={newTransaction.employeeID} onChange={handleChange} required>
-                    <option value="" disabled hidden>Select an Employee</option>
-                    {employeeData.map(employee => 
-                    <option key={employee.employeeID} value={employee.employeeID}>
-                        {`${employee.fName} ${employee.lName}`}
-                    </option>)}
-                </select>
-                <select name="carID" value={newTransaction.carID} onChange={handleChange} required>
-                    <option value="" disabled hidden>Select a car</option>
-                    {carData.map(car => 
-                    <option key={car.carID} value={car.carID}>
-                        {carModelData.map(carModel => 
-                        car.carModelID == carModel.carModelID && `${carModel.year} ${carModel.make} ${carModel.model} ID: ${car.carID}`)}
-                    </option>)}
-                </select>
+                <input type="number" name="customerID" value={newTransaction.customerID} onChange={handleChange} placeholder="Customer ID" required/>
+                <input type="number" name="carID" value={newTransaction.carID} onChange={handleChange} placeholder="Car ID" required/>
+                <input type="number" name="employeeID" value={newTransaction.employeeID} onChange={handleChange} placeholder="Employee ID" required/>
                 <input type="date" name="transactionDate" value={newTransaction.transactionDate} onChange={handleChange} required/>
                 <input type="number" name="transactionAmount" value={newTransaction.transactionAmount} onChange={handleChange} placeholder="Cost" required/>
                 <label htmlFor="paid">Paid
