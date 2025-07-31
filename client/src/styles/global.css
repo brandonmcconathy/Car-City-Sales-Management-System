@@ -53,6 +53,22 @@ table {
     text-decoration: underline;
 }
 
+/* Homepage */
+.homepage-text {
+    margin: 170px auto;
+    width: 60%;
+    padding: 2em;
+    background: tan;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 20px;
+    font-size: x-large;
+}
+
+.homepage {
+    font-size: x-large;
+    padding-top: 150px;
+}
+
 /* Customers page */
 .customers-page {
     padding-top: 50px;
@@ -63,7 +79,22 @@ table {
     padding-top: 50px;
 }
 
+/* Cars Page */
+.cars-page {
+    padding-top: 50px;
+}
+
 /* Car Models Page */
 .car-models-page {
+    padding-top: 50px;
+}
+
+/* Repairs Page */
+.repairs-page {
+    padding-top: 50px;
+}
+
+/* Transactions Page */
+.transactions-page {
     padding-top: 50px;
 }
